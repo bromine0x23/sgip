@@ -1,24 +1,10 @@
-package cn.bromine0x23.sgip.util;
-
 /*
- * #%L
- * ch-commons-util
- * %%
- * Copyright (C) 2012 Cloudhopper by Twitter
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
+ * Copyright © 2017-2019 Bromine0x23 <bromine0x23@163.com>
+ * This work is free. You can redistribute it and/or modify it under the
+ * terms of the Do What The Fuck You Want To Public License, Version 2,
+ * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
  */
+package cn.bromine0x23.sgip.util;
 
 import java.util.concurrent.atomic.AtomicLong;
 

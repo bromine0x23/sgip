@@ -1,5 +1,3 @@
-package cn.bromine0x23.sgip.windowing;
-
 /*
  * #%L
  * ch-commons-util
@@ -19,6 +17,8 @@ package cn.bromine0x23.sgip.windowing;
  * limitations under the License.
  * #L%
  */
+package cn.bromine0x23.sgip.windowing;
+
 
 import lombok.Getter;
 

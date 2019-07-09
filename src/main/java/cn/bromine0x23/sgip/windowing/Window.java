@@ -1,5 +1,3 @@
-package cn.bromine0x23.sgip.windowing;
-
 /*
  * #%L
  * ch-commons-util
@@ -19,6 +17,7 @@ package cn.bromine0x23.sgip.windowing;
  * limitations under the License.
  * #L%
  */
+package cn.bromine0x23.sgip.windowing;
 
 import cn.bromine0x23.sgip.util.UnwrappedWeakReference;
 import org.slf4j.Logger;

@@ -11,6 +11,22 @@
 	<name>SGIP</name>
 	<description>SGIP协议</description>
 
+	<inceptionYear>2017</inceptionYear>
+	<developers>
+		<developer>
+			<id>Bromine0x23</id>
+			<name>Bromine0x23</name>
+			<email>bromine0x23@163.com</email>
+		</developer>
+	</developers>
+	<licenses>
+		<license>
+			<name>WTFPL, Version 2</name>
+			<url>http://www.wtfpl.net/txt/copying</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
 	<properties>
 		<java.version>1.8</java.version>
 
@@ -31,6 +47,10 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 
 		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+
+		<license.name>WTFPL</license.name>
+		<license.owner>Bromine0x23</license.owner>
+		<license.email>bromine0x23@163.com</license.email>
 	</properties>
 
 	<dependencies>
@@ -61,7 +81,6 @@
 			<version>${slf4j.version}</version>
 		</dependency>
 
-
 		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -90,6 +109,11 @@
 					<version>${maven-source-plugin.version}</version>
 				</plugin>
 				<plugin>
+					<groupId>com.mycila</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>${license-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>versions-maven-plugin</artifactId>
 					<version>${versions-maven-plugin.version}</version>
@@ -100,6 +124,42 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>versions-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>com.mycila</groupId>
+						<artifactId>license-maven-plugin-git</artifactId>
+						<version>${license-maven-plugin.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<inlineHeader>
+Copyright © ${license.git.copyrightYears} ${license.owner} &lt;${license.email}&gt;
+This work is free. You can redistribute it and/or modify it under the
+terms of the Do What The Fuck You Want To Public License, Version 2,
+as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
+					</inlineHeader>
+					<failIfMissing>true</failIfMissing>
+					<strictCheck>true</strictCheck>
+					<properties>
+						<license.owner>${license.owner}</license.owner>
+						<license.email>${license.email}</license.email>
+					</properties>
+					<mapping>
+						<java>SLASHSTAR_STYLE</java>
+					</mapping>
+					<includes>
+						<include>src/*/java/**/*.java</include>
+					</includes>
+					<excludes>
+						<exclude>src/main/resources/**</exclude>
+						<exclude>src/test/resources/**</exclude>
+						<exclude>src/main/java/cn/bromine0x23/sgip/windowing/*</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
