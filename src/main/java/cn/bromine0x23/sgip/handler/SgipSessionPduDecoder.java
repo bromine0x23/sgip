@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  */
 public class SgipSessionPduDecoder extends ChannelInboundHandlerAdapter {
 
-	private final static Logger logger = LoggerFactory.getLogger(SgipSessionPduDecoder.class);
+	private static final Logger logger = LoggerFactory.getLogger(SgipSessionPduDecoder.class);
 
 	private final ByteBuf buffer = Unpooled.buffer();
 

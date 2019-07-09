@@ -123,6 +123,7 @@ public class DefaultSgipSession implements SgipSession, SgipSessionChannelListen
 				try {
 					this.close();
 				} catch (Exception ignored) {
+					// ignored
 				}
 			}
 		}
@@ -301,6 +302,7 @@ public class DefaultSgipSession implements SgipSession, SgipSessionChannelListen
 					try {
 						future.fail(cause);
 					} catch (Exception ignored) {
+						// ignored
 					}
 				}
 			}
@@ -330,7 +332,6 @@ public class DefaultSgipSession implements SgipSession, SgipSessionChannelListen
 			if (future != null) {
 				logger.trace("Found a future in the window for seqNum [{}]", receivedPduSeqNum);
 				int callerStateHint = future.getCallerStateHint();
-				//logger.trace("IsCallerWaiting? " + future.isCallerWaiting() + " callerStateHint=" + callerStateHint);
 				if (callerStateHint == WindowFuture.CALLER_WAITING) {
 					logger.trace("Caller waiting for request: {}", future.getRequest());
 				} else if (callerStateHint == WindowFuture.CALLER_NOT_WAITING) {

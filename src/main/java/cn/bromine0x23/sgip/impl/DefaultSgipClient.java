@@ -23,7 +23,6 @@ import cn.bromine0x23.sgip.exception.SgipChannelException;
 import cn.bromine0x23.sgip.exception.SgipTimeoutException;
 import cn.bromine0x23.sgip.exception.UnrecoverablePduException;
 import cn.bromine0x23.sgip.pdu.SgipBind;
-import cn.bromine0x23.sgip.pdu.SgipBindResp;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -110,6 +109,7 @@ public class DefaultSgipClient implements SgipClient {
 				try {
 					session.close();
 				} catch (Exception ignored) {
+					// ignored
 				}
 			}
 		}
@@ -130,8 +130,7 @@ public class DefaultSgipClient implements SgipClient {
 	) throws SgipTimeoutException, SgipChannelException, SgipBindException, UnrecoverablePduException, InterruptedException {
 		SgipBind bindRequest = createBindRequest(configuration);
 		try {
-			//noinspection unused
-			SgipBindResp bindResponse = session.bind(bindRequest, configuration.getBindTimeout());
+			session.bind(bindRequest, configuration.getBindTimeout());
 		} catch (RecoverablePduException exception) {
 			throw new UnrecoverablePduException(exception.getMessage(), exception);
 		}

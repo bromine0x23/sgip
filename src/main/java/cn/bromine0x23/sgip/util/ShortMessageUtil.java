@@ -19,8 +19,6 @@ public class ShortMessageUtil {
 
 	public static final int MAX_SEGMENT_LENGTH = 140;
 
-	// private static final int MAX_SEGMENT_LENGTH = 134;
-
 	private static final int MAX_SEGMENTS_COUNT = 255;
 
 	private static final int HEADER_LENGTH = 6;
