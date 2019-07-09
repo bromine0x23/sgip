@@ -59,27 +59,6 @@ public abstract class SgipSample {
 		SgipSession session = client.bind(configuration, new DefaultSgipSessionHandler());
 		logger.info("<= session.bind");
 
-
-		SgipSubmit submit = new SgipSubmit();
-		submit.setSourceNodeId(0XFFFFFFFF);
-		submit.setSpNumber(source);
-		submit.setChargeNumber("000000000000000000000");
-		submit.setUserNumber(target);
-		submit.setCorporationId("00000");
-		submit.setServiceType("00");
-		submit.setFeeType(1);
-		submit.setFeeValue(1);
-		submit.setGivenValue(1);
-		submit.setBillFlag(SgipConstants.BILL_TYPE_RECEIVABLE);
-		submit.setMoToMtFlag(SgipConstants.MO_TO_MT_FLAG_NOT_UNICAST);
-		submit.setPriority(0);
-		submit.setExpireTime(null);
-		submit.setScheduleTime(null);
-		submit.setReportFlag(SgipConstants.REPORT_FLAG_ERROR_ONLY);
-		submit.setTpPid(SgipConstants.TP_PID_NORMAL);
-		submit.setMessageCoding(SgipConstants.MESSAGE_CODING_UCS2); // USC2(UTF-16) 编码
-		submit.setMessageType(SgipConstants.MESSAGE_TYPE_SMS);
-
 		SgipSubmitResp submitResp;
 
 		// 测试短信发送
@@ -89,10 +68,30 @@ public abstract class SgipSample {
 		};
 		for (String message : messages) {
 			byte[][] contents = ShortMessageUtil.encode(message, SgipConstants.CHARSET_UCS2);
-			submit.setTpUdhi(contents.length > 1 ? SgipConstants.TP_UDHI_CONTAINS_HEADER : SgipConstants.TP_UDHI_NORMAL);
+			byte tpUdhi = contents.length > 1 ? SgipConstants.TP_UDHI_CONTAINS_HEADER : SgipConstants.TP_UDHI_NORMAL;
 			for (byte[] content : contents) {
+				SgipSubmit submit = new SgipSubmit();
+				submit.setSourceNodeId(0XFFFFFFFF);
+				submit.setSpNumber(source);
+				submit.setChargeNumber("000000000000000000000");
+				submit.setUserNumber(target);
+				submit.setCorporationId("00000");
+				submit.setServiceType("00");
+				submit.setFeeType(1);
+				submit.setFeeValue(1);
+				submit.setGivenValue(1);
+				submit.setBillFlag(SgipConstants.BILL_TYPE_RECEIVABLE);
+				submit.setMoToMtFlag(SgipConstants.MO_TO_MT_FLAG_NOT_UNICAST);
+				submit.setPriority(0);
+				submit.setExpireTime(null);
+				submit.setScheduleTime(null);
+				submit.setReportFlag(SgipConstants.REPORT_FLAG_ERROR_ONLY);
+				submit.setTpPid(SgipConstants.TP_PID_NORMAL);
+				submit.setMessageCoding(SgipConstants.MESSAGE_CODING_UCS2); // USC2(UTF-16) 编码
+				submit.setMessageType(SgipConstants.MESSAGE_TYPE_SMS);
+				submit.setTpUdhi(tpUdhi);
 				submit.setMessageContent(content);
-				logger.info("=> session.submit {} submit");
+				logger.info("=> session.submit {}", submit);
 				submitResp = session.submit(submit, 5000);
 				logger.info("<= session.submit {}", submitResp);
 			}
