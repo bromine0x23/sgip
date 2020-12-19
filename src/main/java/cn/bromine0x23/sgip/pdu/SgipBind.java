@@ -1,5 +1,5 @@
 /*
- * Copyright © 2017-2019 Bromine0x23 <bromine0x23@163.com>
+ * Copyright © 2017-2020 Bromine0x23 <bromine0x23@163.com>
  * This work is free. You can redistribute it and/or modify it under the
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -18,6 +18,11 @@ import lombok.Setter;
 
 /**
  * Bind 命令
+ * <p>
+ * <blockquote>
+ * Bind操作由Bind命令和Bind_Resp应答组成。
+ * 客户端首先发送Bind命令，服务器端收到Bind命令后，对命令发送方进行验证，然后返回Bind_Resp应答。
+ * </blockquote>
  *
  * @author <a href="mailto:bromine0x23@163.com">Bromine0x23</a>
  */
@@ -28,6 +33,7 @@ public class SgipBind extends SgipPduRequest<SgipBindResp> {
 	/**
 	 * 登录类型（1 Byte）
 	 * <p>
+	 * <blockquote>
 	 * 1：SP向SMG建立的连接，用于发送命令<br/>
 	 * 2：SMG向SP建立的连接，用于发送命令<br/>
 	 * 3：SMG之间建立的连接，用于转发命令<br/>
@@ -36,6 +42,9 @@ public class SgipBind extends SgipPduRequest<SgipBindResp> {
 	 * 6：主备GNS之间建立的连接，用于主备路由表的一致性<br/>
 	 * 11：SP与SMG以及SMG之间建立的测试连接，用于跟踪测试<br/>
 	 * 其它：保留
+	 * </blockquote>
+	 *
+	 * @see SgipConstants.LoginType
 	 */
 	@Getter
 	@Setter
@@ -61,7 +70,7 @@ public class SgipBind extends SgipPduRequest<SgipBindResp> {
 	private String reserve;
 
 	public SgipBind() {
-		super(SgipConstants.COMMAND_ID_BIND, "Bind");
+		super(SgipConstants.CommandId.BIND, "Bind");
 	}
 
 	public void setLoginName(String loginName) {

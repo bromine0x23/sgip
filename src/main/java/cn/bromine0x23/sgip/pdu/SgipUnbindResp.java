@@ -1,5 +1,5 @@
 /*
- * Copyright © 2017-2019 Bromine0x23 <bromine0x23@163.com>
+ * Copyright © 2017-2020 Bromine0x23 <bromine0x23@163.com>
  * This work is free. You can redistribute it and/or modify it under the
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -19,6 +19,6 @@ import lombok.EqualsAndHashCode;
 public class SgipUnbindResp extends SgipEmptyBodyResp {
 
 	public SgipUnbindResp() {
-		super(SgipConstants.COMMAND_ID_UNBIND_RESP, "Unbind_Resp");
+		super(SgipConstants.CommandId.UNBIND_RESP, "Unbind_Resp");
 	}
 }

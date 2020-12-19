@@ -1,5 +1,5 @@
 /*
- * Copyright © 2017-2019 Bromine0x23 <bromine0x23@163.com>
+ * Copyright © 2017-2020 Bromine0x23 <bromine0x23@163.com>
  * This work is free. You can redistribute it and/or modify it under the
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -110,7 +110,7 @@ public class DefaultSgipSession implements SgipSession, SgipSessionChannelListen
 			state.set(State.BINDING);
 			SgipPduResponse response     = sendRequestAndGetResponse(request, timeoutInMillis);
 			SgipBindResp    bindResponse = (SgipBindResp)response;
-			if (bindResponse == null || bindResponse.getResult() != SgipConstants.ERROR_CODE_OK) {
+			if (bindResponse == null || bindResponse.getResult() != SgipConstants.ErrorCode.OK) {
 				throw new SgipBindException(bindResponse);
 			}
 			bound = true;

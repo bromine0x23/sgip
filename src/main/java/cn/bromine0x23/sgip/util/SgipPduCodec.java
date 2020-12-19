@@ -1,5 +1,5 @@
 /*
- * Copyright © 2017-2019 Bromine0x23 <bromine0x23@163.com>
+ * Copyright © 2017-2020 Bromine0x23 <bromine0x23@163.com>
  * This work is free. You can redistribute it and/or modify it under the
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -125,15 +125,15 @@ public class SgipPduCodec {
 
 	private static SgipPdu createPduRequest(int commandId) {
 		switch (commandId) {
-			case SgipConstants.COMMAND_ID_BIND:
+			case SgipConstants.CommandId.BIND:
 				return new SgipBind();
-			case SgipConstants.COMMAND_ID_UNBIND:
+			case SgipConstants.CommandId.UNBIND:
 				return new SgipUnbind();
-			case SgipConstants.COMMAND_ID_SUBMIT:
+			case SgipConstants.CommandId.SUBMIT:
 				return new SgipSubmit();
-			case SgipConstants.COMMAND_ID_DELIVER:
+			case SgipConstants.CommandId.DELIVER:
 				return new SgipDeliver();
-			case SgipConstants.COMMAND_ID_REPORT:
+			case SgipConstants.CommandId.REPORT:
 				return new SgipReport();
 			default:
 				return new SgipPartialPdu(commandId);
@@ -142,15 +142,15 @@ public class SgipPduCodec {
 
 	private static SgipPdu createPduResponse(int commandId) {
 		switch (commandId) {
-			case SgipConstants.COMMAND_ID_BIND_RESP:
+			case SgipConstants.CommandId.BIND_RESP:
 				return new SgipBindResp();
-			case SgipConstants.COMMAND_ID_UNBIND_RESP:
+			case SgipConstants.CommandId.UNBIND_RESP:
 				return new SgipUnbindResp();
-			case SgipConstants.COMMAND_ID_SUBMIT_RESP:
+			case SgipConstants.CommandId.SUBMIT_RESP:
 				return new SgipSubmitResp();
-			case SgipConstants.COMMAND_ID_DELIVER_RESP:
+			case SgipConstants.CommandId.DELIVER_RESP:
 				return new SgipDeliverResp();
-			case SgipConstants.COMMAND_ID_REPORT_RESP:
+			case SgipConstants.CommandId.REPORT_RESP:
 				return new SgipReportResp();
 			default:
 				return new SgipPartialPduResp(commandId);

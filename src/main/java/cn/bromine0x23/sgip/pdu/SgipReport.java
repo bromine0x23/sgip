@@ -1,5 +1,5 @@
 /*
- * Copyright © 2017-2019 Bromine0x23 <bromine0x23@163.com>
+ * Copyright © 2017-2020 Bromine0x23 <bromine0x23@163.com>
  * This work is free. You can redistribute it and/or modify it under the
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -18,6 +18,14 @@ import lombok.Setter;
 
 /**
  * Report 命令
+ * <p>
+ * <blockquote>
+ * 在SP和SMG的通信中，SMG用Deliver命令向SP发送一条MO短消息。
+ * SP接收到Deliver命令，会返回Deliver_Resp应答。
+ * SMG根据Deliver命令中目的特服号，判断出该服务属于和哪一个SMG相连接的SP，如果属于本地SP，则直接发送到SP，否则路由至相应的SMG。
+ * 在SMG和SMG的通信中，Deliver命令用于SMG客户端向服务器端路由MO短消息。
+ * 服务器端接收到Deliver命令后，再发送到与之相连的目的SP。
+ * </blockquote>
  *
  * @author <a href="mailto:bromine0x23@163.com">Bromine0x23</a>
  */
@@ -49,8 +57,10 @@ public class SgipReport extends SgipPduRequest<SgipReportResp> {
 	/**
 	 * Report命令类型（1 字节）
 	 * <p>
+	 * <blockquote>
 	 * 0：对先前一条Submit命令的状态报告
 	 * 1：对先前一条前转Deliver命令的状态报告
+	 * </blockquote>
 	 */
 	@Getter
 	@Setter
@@ -59,7 +69,9 @@ public class SgipReport extends SgipPduRequest<SgipReportResp> {
 	/**
 	 * 接收短消息的手机号（21 字节）
 	 * <p>
+	 * <blockquote>
 	 * 手机号码前加“86”国别标志
+	 * </blockquote>
 	 */
 	@Getter
 	@Setter
@@ -68,9 +80,11 @@ public class SgipReport extends SgipPduRequest<SgipReportResp> {
 	/**
 	 * 该命令所涉及的短消息的当前执行状态（1 字节）
 	 * <p>
+	 * <blockquote>
 	 * 0：发送成功
 	 * 1：等待发送
 	 * 2：发送失败
+	 * </blockquote>
 	 */
 	@Getter
 	@Setter
@@ -91,7 +105,7 @@ public class SgipReport extends SgipPduRequest<SgipReportResp> {
 	private String reserve;
 
 	public SgipReport() {
-		super(SgipConstants.COMMAND_ID_REPORT, "Report");
+		super(SgipConstants.CommandId.REPORT, "Report");
 	}
 
 	@Override

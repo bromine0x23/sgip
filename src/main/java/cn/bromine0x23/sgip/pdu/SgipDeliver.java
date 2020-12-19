@@ -1,5 +1,5 @@
 /*
- * Copyright © 2017-2019 Bromine0x23 <bromine0x23@163.com>
+ * Copyright © 2017-2020 Bromine0x23 <bromine0x23@163.com>
  * This work is free. You can redistribute it and/or modify it under the
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -40,18 +40,26 @@ public class SgipDeliver extends SgipPduRequest<SgipDeliverResp> {
 	private String spNumber;
 
 	/**
-	 * TP Protocol Identifier (TP PID)（1 Byte）
+	 * GSM协议类型（1 Byte）
 	 * <p>
-	 * 详细解释请参考 GSM03.40（3GPP 23.040） 的 9.2.3.9 节
+	 * <blockquote>
+	 * 详细解释请参考GSM03.40中的9.2.3.9
+	 * </blockquote>
+	 *
+	 * @see SgipConstants.TpPid
 	 */
 	@Getter
 	@Setter
-	private byte tpPid = SgipConstants.TP_PID_NORMAL;
+	private byte tpPid = SgipConstants.TpPid.NORMAL;
 
 	/**
 	 * TP User Data Header Indicator (TP UDHI)（1 Byte）
 	 * <p>
+	 * <blockquote>
 	 * 详细解释请参考 3GPP 23.040（GSM 03.40）的 9.2.3.23 节，仅使用1位，右对齐
+	 * </blockquote>
+	 *
+	 * @see SgipConstants.TpUdhi
 	 */
 	@Getter
 	@Setter
@@ -60,12 +68,16 @@ public class SgipDeliver extends SgipPduRequest<SgipDeliverResp> {
 	/**
 	 * 短消息编码格式（1 Byte）
 	 * <p>
+	 * <blockquote>
 	 * 0：纯ASCII字符串
 	 * 3：写卡操作
 	 * 4：二进制编码
 	 * 8：UCS2编码
 	 * 15: GBK编码
 	 * 其它参见 GSM 03.38（3GPP 23.038）第 4 节：SMS Data Coding Scheme
+	 * </blockquote>
+	 *
+	 * @see SgipConstants.DataCoding
 	 */
 	@Getter
 	@Setter
@@ -74,12 +86,14 @@ public class SgipDeliver extends SgipPduRequest<SgipDeliverResp> {
 	/**
 	 * 信息类型（1 Byte）
 	 * <p>
+	 * <blockquote>
 	 * 0-短消息信息
 	 * 其它：待定
+	 * </blockquote>
 	 */
 	@Getter
 	@Setter
-	private byte messageType = SgipConstants.MESSAGE_TYPE_SMS;
+	private byte messageType = SgipConstants.MessageType.SMS;
 
 	/**
 	 * 短消息长度（4 Byte）
@@ -89,7 +103,7 @@ public class SgipDeliver extends SgipPduRequest<SgipDeliverResp> {
 	private int messageLength;
 
 	/**
-	 * 短消息内容（{@code messageLength} Byte）
+	 * 短消息内容（{@link #messageLength} Byte）
 	 */
 	@Getter
 	@Setter
@@ -103,7 +117,7 @@ public class SgipDeliver extends SgipPduRequest<SgipDeliverResp> {
 	private String reserve = "";
 
 	public SgipDeliver() {
-		super(SgipConstants.COMMAND_ID_DELIVER, "Deliver");
+		super(SgipConstants.CommandId.DELIVER, "Deliver");
 	}
 
 	@Override
