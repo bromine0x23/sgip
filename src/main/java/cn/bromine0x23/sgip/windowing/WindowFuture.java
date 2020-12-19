@@ -32,17 +32,17 @@ package cn.bromine0x23.sgip.windowing;
  *                                      +---------------------------+
  *                                      | Completed successfully    |
  *                                      +---------------------------+
- *                                 +---->      isDone() = <b>true</b>      |
+ *                                 +----&gt;      isDone() = <b>true</b>      |
  * +--------------------------+    |    |   isSuccess() = <b>true</b>      |
  * |        Uncompleted       |    |    +===========================+
  * +--------------------------+    |    | Completed with failure    |
  * |      isDone() = false    |    |    +---------------------------+
- * |   isSuccess() = false    |----+---->   isDone() = <b>true</b>         |
+ * |   isSuccess() = false    |----+----&gt;   isDone() = <b>true</b>         |
  * | isCancelled() = false    |    |    | getCause() = <b>non-null</b>     |
  * |    getCause() = null     |    |    +===========================+
  * +--------------------------+    |    | Completed by cancellation |
  *                                 |    +---------------------------+
- *                                 +---->      isDone() = <b>true</b>      |
+ *                                 +----&gt;      isDone() = <b>true</b>      |
  *                                      | isCancelled() = <b>true</b>      |
  *                                      +---------------------------+
  * </pre>

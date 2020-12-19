@@ -93,7 +93,7 @@ public class Window<TKey, TRequest, TResponse> {
 	 * executed (such as expiration of requests).
 	 *
 	 * @param size The maximum number of requests permitted to
-	 *             be outstanding (unacknowledged) at a given time.  Must be > 0.
+	 *             be outstanding (unacknowledged) at a given time.  Must be &gt; 0.
 	 */
 	public Window(int size) {
 		this(size, null, 0, null, null);
@@ -105,7 +105,7 @@ public class Window<TKey, TRequest, TResponse> {
 	 * expiration of requests).
 	 *
 	 * @param size            The maximum number of requests permitted to
-	 *                        be outstanding (unacknowledged) at a given time.  Must be > 0.
+	 *                        be outstanding (unacknowledged) at a given time.  Must be &gt; 0.
 	 * @param executor        The scheduled executor service to execute
 	 *                        recurring tasks (such as expiration of requests).
 	 * @param monitorInterval The number of milliseconds between executions of
@@ -122,7 +122,7 @@ public class Window<TKey, TRequest, TResponse> {
 	 * expiration of requests).
 	 *
 	 * @param size              The maximum number of requests permitted to
-	 *                          be outstanding (unacknowledged) at a given time.  Must be > 0.
+	 *                          be outstanding (unacknowledged) at a given time.  Must be &gt; 0.
 	 * @param executor          The scheduled executor service to execute
 	 *                          recurring tasks (such as expiration of requests).
 	 * @param monitorInterval   The number of milliseconds between executions of
@@ -647,8 +647,6 @@ public class Window<TKey, TRequest, TResponse> {
 	 * callers/threads blocked with pending offers will be signaled to continue.
 	 *
 	 * @return A list of all futures that were cancelled.
-	 * @throws InterruptedException Thrown if the calling thread is interrupted
-	 *                              and we're currently waiting to acquire the internal "windowLock".
 	 */
 	public List<WindowFuture<TKey, TRequest, TResponse>> cancelAll() {
 		if (futures.size() <= 0) {
@@ -684,8 +682,6 @@ public class Window<TKey, TRequest, TResponse> {
 	 * callers/threads blocked with pending offers will be signaled to continue.
 	 *
 	 * @return A list of all expired futures that were cancelled.
-	 * @throws InterruptedException Thrown if the calling thread is interrupted
-	 *                              and we're currently waiting to acquire the internal "windowLock".
 	 */
 	public List<WindowFuture<TKey, TRequest, TResponse>> cancelAllExpired() {
 		if (futures.size() <= 0) {

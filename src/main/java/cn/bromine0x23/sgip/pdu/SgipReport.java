@@ -20,11 +20,8 @@ import lombok.Setter;
  * Report 命令
  * <p>
  * <blockquote>
- * 在SP和SMG的通信中，SMG用Deliver命令向SP发送一条MO短消息。
- * SP接收到Deliver命令，会返回Deliver_Resp应答。
- * SMG根据Deliver命令中目的特服号，判断出该服务属于和哪一个SMG相连接的SP，如果属于本地SP，则直接发送到SP，否则路由至相应的SMG。
- * 在SMG和SMG的通信中，Deliver命令用于SMG客户端向服务器端路由MO短消息。
- * 服务器端接收到Deliver命令后，再发送到与之相连的目的SP。
+ * Report命令用于向SP发送一条先前的Submit命令的当前状态，或者用于向前转SMG发送一条先前的Deliver命令的当前状态。
+ * Report命令的接收方需要向发送方返回Report_Resp命令。
  * </blockquote>
  *
  * @author <a href="mailto:bromine0x23@163.com">Bromine0x23</a>

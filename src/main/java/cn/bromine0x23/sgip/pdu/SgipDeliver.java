@@ -18,6 +18,14 @@ import lombok.Setter;
 
 /**
  * Deliver 命令
+ * <p>
+ * <blockquote>
+ * 在SP和SMG的通信中，SMG用Deliver命令向SP发送一条MO短消息。
+ * SP接收到Deliver命令，会返回Deliver_Resp应答。
+ * SMG根据Deliver命令中目的特服号，判断出该服务属于和哪一个SMG相连接的SP，如果属于本地SP，则直接发送到SP，否则路由至相应的SMG。
+ * 在SMG和SMG的通信中，Deliver命令用于SMG客户端向服务器端路由MO短消息。
+ * 服务器端接收到Deliver命令后，再发送到与之相连的目的SP。
+ * </blockquote>
  *
  * @author <a href="mailto:bromine0x23@163.com">Bromine0x23</a>
  */
@@ -137,15 +145,15 @@ public class SgipDeliver extends SgipPduRequest<SgipDeliverResp> {
 
 	@Override
 	public void readBody(ByteBuf buffer) throws UnrecoverablePduException, RecoverablePduException {
-		this.userNumber = ByteBufUtil.readFixedString(buffer, 21);
-		this.spNumber = ByteBufUtil.readFixedString(buffer, 21);
-		this.tpPid = buffer.readByte();
-		this.tpUdhi = buffer.readByte();
-		this.messageCoding = buffer.readByte();
-		this.messageType = buffer.readByte();
-		this.messageLength = buffer.readInt();
+		this.userNumber     = ByteBufUtil.readFixedString(buffer, 21);
+		this.spNumber       = ByteBufUtil.readFixedString(buffer, 21);
+		this.tpPid          = buffer.readByte();
+		this.tpUdhi         = buffer.readByte();
+		this.messageCoding  = buffer.readByte();
+		this.messageType    = buffer.readByte();
+		this.messageLength  = buffer.readInt();
 		this.messageContent = ByteBufUtil.readFixedString(buffer, messageLength);
-		this.reserve = ByteBufUtil.readFixedString(buffer, 8);
+		this.reserve        = ByteBufUtil.readFixedString(buffer, 8);
 	}
 
 	@Override
