@@ -1,14 +1,15 @@
 /*
- * Copyright © 2017-2020 Bromine0x23 <bromine0x23@163.com>
+ * Copyright © 2017-2021 Bromine0x23 <bromine0x23@163.com>
  * This work is free. You can redistribute it and/or modify it under the
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
  */
 package cn.bromine0x23.sgip.impl;
 
-import cn.bromine0x23.sgip.handler.SgipSessionPduDecoder;
-import cn.bromine0x23.sgip.handler.SgipSessionPduEncoder;
-import cn.bromine0x23.sgip.handler.SgipSessionThreadRenamer;
+import cn.bromine0x23.sgip.handler.SgipFrameDecoder;
+import cn.bromine0x23.sgip.handler.SgipPduDecoder;
+import cn.bromine0x23.sgip.handler.SgipPduEncoder;
+import cn.bromine0x23.sgip.handler.SgipThreadRenamer;
 import cn.bromine0x23.sgip.handler.SgipSessionWrapper;
 import cn.bromine0x23.sgip.SgipClient;
 import cn.bromine0x23.sgip.SgipConstants;
@@ -161,7 +162,7 @@ public class DefaultSgipClient implements SgipClient {
 	) {
 		DefaultSgipSession session = new DefaultSgipSession(configuration, channel, sessionHandler, monitorExecutor);
 		if (configuration.getName() != null) {
-			channel.pipeline().addLast("sgipSessionThreadRenamer", new SgipSessionThreadRenamer(configuration.getName()));
+			channel.pipeline().addLast(SgipConstants.PIPELINE_THREAD_RENAMER, new SgipThreadRenamer(configuration.getName()));
 		} else {
 			log.warn("Session configuration did not have a name set - skipping threadRenamer in pipeline");
 		}
@@ -170,8 +171,9 @@ public class DefaultSgipClient implements SgipClient {
 			channel.pipeline().addLast(SgipConstants.PIPELINE_SESSION_WRITE_TIMEOUT_NAME, writeTimeoutHandler);
 		}
 		channel.pipeline()
-			.addLast(SgipConstants.PIPELINE_SESSION_PDU_DECODER_NAME, new SgipSessionPduDecoder())
-			.addLast(SgipConstants.PIPELINE_SESSION_PDU_ENCODER_NAME, new SgipSessionPduEncoder())
+			.addLast(SgipConstants.PIPELINE_FRAME_DECODER_NAME, new SgipFrameDecoder())
+			.addLast(SgipConstants.PIPELINE_PDU_DECODER_NAME, new SgipPduDecoder())
+			.addLast(SgipConstants.PIPELINE_PDU_ENCODER_NAME, new SgipPduEncoder())
 			.addLast(SgipConstants.PIPELINE_SESSION_WRAPPER_NAME, new SgipSessionWrapper(session));
 		return session;
 	}

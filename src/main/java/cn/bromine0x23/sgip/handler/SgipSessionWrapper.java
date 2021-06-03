@@ -1,5 +1,5 @@
 /*
- * Copyright © 2017-2019 Bromine0x23 <bromine0x23@163.com>
+ * Copyright © 2017-2021 Bromine0x23 <bromine0x23@163.com>
  * This work is free. You can redistribute it and/or modify it under the
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -18,7 +18,7 @@ import io.netty.channel.ChannelHandlerContext;
  */
 public class SgipSessionWrapper extends ChannelDuplexHandler {
 
-	private SgipSessionChannelListener listener;
+	private final SgipSessionChannelListener listener;
 
 	public SgipSessionWrapper(SgipSessionChannelListener listener) {
 		this.listener = listener;

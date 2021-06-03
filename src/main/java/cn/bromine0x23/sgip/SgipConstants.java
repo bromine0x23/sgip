@@ -1,5 +1,5 @@
 /*
- * Copyright © 2017-2020 Bromine0x23 <bromine0x23@163.com>
+ * Copyright © 2017-2021 Bromine0x23 <bromine0x23@163.com>
  * This work is free. You can redistribute it and/or modify it under the
  * terms of the Do What The Fuck You Want To Public License, Version 2,
  * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
@@ -25,10 +25,12 @@ public class SgipConstants {
 	public static final int PDU_CMD_ID_RESP_MASK = 0x80000000;
 
 	public static final String PIPELINE_LOGGER_NAME                = "nettyLogger";
-	public static final String PIPELINE_SESSION_PDU_ENCODER_NAME   = "sgipSessionPduDecoder";
-	public static final String PIPELINE_SESSION_PDU_DECODER_NAME   = "sgipSessionPduEncoder";
+	public static final String PIPELINE_FRAME_DECODER_NAME         = "sgipFrameDecoder";
+	public static final String PIPELINE_PDU_DECODER_NAME           = "sgipPduDecoder";
+	public static final String PIPELINE_PDU_ENCODER_NAME           = "sgipPduEncoder";
 	public static final String PIPELINE_SESSION_WRAPPER_NAME       = "sgipSessionWrapper";
 	public static final String PIPELINE_SESSION_WRITE_TIMEOUT_NAME = "sgipSessionWriteTimeout";
+	public static final String PIPELINE_THREAD_RENAMER             = "sgipThreadRenamer";
 
 	public static final int  DEFAULT_CONNECT_TIMEOUT         = 10000;
 	public static final long DEFAULT_BIND_TIMEOUT            = 5000;
