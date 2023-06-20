@@ -32,7 +32,7 @@
 
 		<lombok.version>1.18.16</lombok.version>
 		<logback.version>1.2.3</logback.version>
-		<netty.version>4.1.56.Final</netty.version>
+		<netty.version>4.1.94.Final</netty.version>
 		<slf4j.version>1.7.30</slf4j.version>
 
 		<maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
